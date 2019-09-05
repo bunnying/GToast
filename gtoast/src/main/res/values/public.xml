@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public name="colorToastSuccess" type="color"/>
+    <public name="colorToastError" type="color"/>
+    <public name="colorToastInfo" type="color"/>
+    <public name="colorToastNormal" type="color"/>
+</resources>
