@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity() {
                 .setGravity(Gravity.CENTER, 200, 200)
                 .shot()
         })
+        addButton("radius", View.OnClickListener {
+            GToast.Builder(this)
+                .normal("radius set to zero")
+                .setIcon(R.drawable.ic_gtoast_check_black_24dp)
+                .setRadius(0)
+                .shot()
+        })
     }
 
     private fun addButton(text: String?, onClickListener: View.OnClickListener?) {

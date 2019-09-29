@@ -26,6 +26,10 @@ object GToast {
     const val LENGTH_LONG = Toast.LENGTH_LONG
     private var toast: Toast? = null
 
+    fun cancel() {
+        toast?.cancel()
+    }
+
     class Builder(private val context: Context?) {
         private var duration: Int = LENGTH_SHORT
         private var text: String? = null
@@ -36,6 +40,7 @@ object GToast {
         private var colorBackground: Int? = null
         private var colorText: Int? = null
         private var colorIcon: Int? = null
+        private var radius: Float? = null
 
         fun create(): Toast {
             val t = Toast.makeText(context, null, duration).apply {
@@ -52,7 +57,8 @@ object GToast {
                     }
                 }
                 this.addOnLayoutChangeListener { v, left, top, right, bottom, _, _, _, _ ->
-                    this.radius = when (v.findViewById<AppCompatTextView?>(R.id.textViewToast)?.lineCount) {
+                    this.radius = this@Builder.radius
+                        ?: when (v.findViewById<AppCompatTextView?>(R.id.textViewToast)?.lineCount) {
                             0, 1 -> min(right - left, bottom - top) * 0.5f
                             else -> dpToPx(context, 24).toFloat()
                         }
@@ -206,6 +212,12 @@ object GToast {
         fun setIconTextColor(@ColorInt color: Int?): Builder {
             this.colorIcon = color
             this.colorText = color
+            return this
+        }
+
+        fun setRadius(radius: Int?): Builder = setRadius(radius?.toFloat())
+        fun setRadius(radius: Float?): Builder {
+            this.radius = radius
             return this
         }
     }
