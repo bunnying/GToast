@@ -85,7 +85,11 @@ object GToast {
         fun show(): Toast {
             val t = create()
             toast = t
-            t.show()
+            try {
+                t.show()
+            } catch (e: Exception) {
+                //
+            }
             return t
         }
         fun shot(): Toast { //cancel before toast

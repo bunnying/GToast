@@ -3,6 +3,7 @@ package com.bunnying.demo.gtoast
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
@@ -54,7 +55,11 @@ class MainActivity : AppCompatActivity() {
                 .normal("radius set to zero")
                 .setIcon(R.drawable.ic_gtoast_check_black_24dp)
                 .setRadius(0)
+                .setDuration(GToast.LENGTH_LONG)
                 .shot()
+            Handler().postDelayed({
+                GToast.cancel()
+            }, 1000)
         })
     }
 
